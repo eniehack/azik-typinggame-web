@@ -1,7 +1,15 @@
 <script lang="ts">
-	import { keyword, keywords, remainRoma } from '$lib/store';
+	import { writable, type Writable } from 'svelte/store';
+    import type { Keyword } from './keyword';
 
-	let current: number = 0;
+    export let keywords: Keyword[];
+    let current: number = 0;
+
+    const keyword: Writable<Keyword> = writable(
+    	keywords[Math.ceil(Math.random() * keywords.length)]
+    );
+
+    const remainRoma: Writable<string> = writable('');
 
 	const keypressed = (event: KeyboardEvent) => {
 		if ($keyword.roma.charAt(current) == event.key) {
@@ -18,10 +26,6 @@
 		}
 	});
 </script>
-
-<svelte:head>
-	<title>AZIKタイピングゲーム</title>
-</svelte:head>
 
 <svelte:document on:keydown={keypressed} />
 

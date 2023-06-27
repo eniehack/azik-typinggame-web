@@ -1,0 +1,9 @@
+---
+import Typing from "../../components/typing.svelte";
+import type { Keyword } from "../../components/keyword";
+import keywords from "./basic.json";
+import TypingLayout from "../../layouts/TypingLayout.astro";
+---
+<TypingLayout title="basic">
+    <Typing client:load keywords={keywords} />
+</TypingLayout>
